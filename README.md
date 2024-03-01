@@ -26,9 +26,11 @@
 ![IMAGE]()
 
 ## Step 5: Setup EventBridge scaling alarm 
-#### Setup an CloudWatch Events scaling alarm that increases the number of EC2 instances available in the auto scaling group if CPU is over 70% and reduced the number of EC2 instances if under 40%. In CloudWatch, create an alarm > search for `CPUUtlization` > Selected the newly EC2 CPUUtilization autoscaling group metric
+#### Setup an CloudWatch Events scaling alarm that increases the number of EC2 instances available in the auto scaling group if CPU is over 70% and reduced the number of EC2 instances if under 40%. In CloudWatch, create an alarm > search for `CPUUtlization` > Selecte the newly EC2 CPUUtilization autoscaling group metric
   
 ![IMAGE]()
+
+Finish!
 
 ## Notes
 *
