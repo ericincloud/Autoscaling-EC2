@@ -21,12 +21,12 @@
 ![IMAGE]()
 
 ## Step 4: Create autoscaling group 
-#### Create Launch template with the Bitnami NGINX AMI and in a private subnet. The configuration should be of the initial Bitnami NGINX EC2 instance. Then create autoscaling group that takes into account the ALB and EC2
+#### Create Launch template with the Bitnami NGINX AMI and in a private subnet. The configuration should be of the initial Bitnami NGINX EC2 instance. Then create autoscaling group that takes into account the ALB and EC2. Create 2 simple scaling policies - one that adds capacity units/instances if CPU utilization is over 70% and another that removes capacity units/instances if CPU utilization is under 40%. 
   
 ![IMAGE]()
 
 ## Step 5: Setup EventBridge scaling alarm 
-#### Setup an EventBridge scaling alarm that increases the number of EC2 instances available in the auto scaling group if CPU is over 70% and reduced the number of EC2 instances if under 40%.
+#### Setup an CloudWatch Events scaling alarm that increases the number of EC2 instances available in the auto scaling group if CPU is over 70% and reduced the number of EC2 instances if under 40%. In CloudWatch, create an alarm > search for `CPUUtlization` > Selected the newly EC2 CPUUtilization autoscaling group metric
   
 ![IMAGE]()
 
