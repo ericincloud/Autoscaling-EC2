@@ -11,17 +11,17 @@
 ![IMAGE]()
 
 ## Step 2: Create NGINX EC2
-#### Create an EC2 instance installed with the NGINX web server in a private subnet.
+#### Create an EC2 instance installed with the Bitnmai NGINX AMI web server in a private subnet.
   
 ![IMAGE]()
 
 ## Step 3: Setup ALB 
-#### Setup an Application Load Balancer in the public subnet and connect it to the NGINX web server EC2 instance.
+#### Create target group containing the NGINX EC2 instance. Then setup an Application Load Balancer in public subnet and connect it to the NGINX web server EC2 instance.
   
 ![IMAGE]()
 
 ## Step 4: Create autoscaling group 
-#### Create autoscaling group that takes into account the ALB and EC2
+#### Create Launch template with the Bitnami NGINX AMI and in a private subnet. The configuration should be of the initial Bitnami NGINX EC2 instance. Then create autoscaling group that takes into account the ALB and EC2
   
 ![IMAGE]()
 
