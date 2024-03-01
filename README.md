@@ -16,7 +16,7 @@
 ![IMAGE]()
 
 ## Step 3: Setup ALB 
-#### Create target group containing the NGINX EC2 instance. Then setup an Application Load Balancer in public subnet and connect it to the NGINX web server EC2 instance.
+#### Create target group containing the NGINX EC2 instance. Then setup an Application Load Balancer in public subnet and connect it to the NGINX web server EC2 instance. Edit the ALB security group to allow `HTTP` traffic on `Port 80` from `0.0.0.0/0` anywhere. Verify functionality by accessing the ALB DNS name. A default NGINX webpage should show up. 
   
 ![IMAGE]()
 
