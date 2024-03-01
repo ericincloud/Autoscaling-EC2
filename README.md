@@ -1,4 +1,4 @@
-# Autoscaling EC2 Web Server
+# Autoscaling-EC2-Web-Server
 #### 
 #### 
 
