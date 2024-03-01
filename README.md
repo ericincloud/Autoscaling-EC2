@@ -1,4 +1,4 @@
-# Autoscaling-EC2
+# Autoscaling EC2 Web Server
 #### 
 #### 
 
@@ -30,7 +30,7 @@
   
 ![IMAGE]()
 
-Finish!
+#### Finish!
 
 ## Notes
 *
