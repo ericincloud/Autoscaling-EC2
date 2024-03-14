@@ -33,24 +33,21 @@ resource "aws_route_table_association" "public" {
   route_table_id = aws_route_table.public.id
 }
 
-resource "aws_route_table" "private" {
-  vpc_id = aws_vpc.main.id
-}
-
 resource "aws_subnet" "private" {
   count      = 3
   vpc_id     = aws_vpc.main.id
   cidr_block = "10.0.${count.index + 3}.0/24"
 }
 
-resource "aws_route_table_association" "private" {
-  count          = 3
-  subnet_id      = aws_subnet.private[count.index].id
-  route_table_id = aws_route_table.private.id
-}
-
 resource "aws_security_group" "sg" {
   vpc_id = aws_vpc.main.id
+
+  ingress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 }
 
 resource "aws_lb" "alb" {
@@ -81,7 +78,7 @@ resource "aws_lb_listener" "front_end" {
 
 resource "aws_launch_configuration" "lc" {
   name          = "my-lc"
-  image_id      = "ami-0d7a109bf30624c99"
+  image_id      = "ami-04479e961467114dd"
   instance_type = "t2.micro"
   security_groups = [aws_security_group.sg.id]
 }
