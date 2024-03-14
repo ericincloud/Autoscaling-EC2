@@ -37,12 +37,6 @@ resource "aws_route_table" "private" {
   vpc_id = aws_vpc.main.id
 }
 
-resource "aws_route" "private_nat_gateway" {
-  route_table_id         = aws_route_table.private.id
-  destination_cidr_block = "0.0.0.0/0"
-  nat_gateway_id         = aws_nat_gateway.nat.id
-}
-
 resource "aws_subnet" "private" {
   count      = 3
   vpc_id     = aws_vpc.main.id
@@ -87,7 +81,7 @@ resource "aws_lb_listener" "front_end" {
 
 resource "aws_launch_configuration" "lc" {
   name          = "my-lc"
-  image_id      = "ami-0c94855ba95c574c8"
+  image_id      = "ami-0d7a109bf30624c99"
   instance_type = "t2.micro"
   security_groups = [aws_security_group.sg.id]
 }
