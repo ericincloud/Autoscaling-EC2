@@ -37,6 +37,7 @@ resource "aws_subnet" "private" {
   count      = 3
   vpc_id     = aws_vpc.main.id
   cidr_block = "10.0.${count.index + 3}.0/24"
+  map_public_ip_on_launch = false
 }
 
 resource "aws_security_group" "sg" {
@@ -97,7 +98,7 @@ resource "aws_launch_configuration" "lc" {
 resource "aws_autoscaling_group" "asg" {
   desired_capacity     = 1
   max_size             = 5
-  min_size             = 1
+  min_size             = 0
   health_check_type    = "ELB"
   health_check_grace_period = 300
   launch_configuration = aws_launch_configuration.lc.name
