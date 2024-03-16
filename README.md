@@ -21,7 +21,11 @@
 ![nginxec2](https://github.com/ericincloud/Autoscaling-EC2-Web-Server/assets/144301872/0d110e4e-7116-43d6-b76a-e7260b9f2c3f)
 
 ## Step 3: Setup ALB 
-#### Create target group containing the NGINX EC2 instance. Then setup an Application Load Balancer in public subnet and connect it to the NGINX web server EC2 instance. Edit the ALB security group to allow `HTTP` traffic on `Port 80` from `0.0.0.0/0` anywhere + Allow Outbound traffic on Port 80 to the EC2 instance using it's private IP address. Make sure the the EC2's SG has no inbound or outbound rules to remain private. Add inbound and outbound EC2 security group rules allowing HTTP Port 80 for the ALB's security group. ALB's Verify functionality by accessing the ALB DNS name. A default NGINX webpage should show up. 
+#### Create target group containing the NGINX EC2 instance. Then setup an Application Load Balancer in public subnet and connect it to the NGINX web server EC2 instance. 
+
+#### Edit the ALB's security group Inbound rule to allow `HTTP` traffic on `Port 80` from `0.0.0.0/0` anywhere + Allow Outbound traffic on Port 80 to the EC2 instance using it's private IPv4 address. 
+
+#### In the EC2's security group: Add Inbound EC2 security group rule allowing HTTP Port 80 for the ALB's security group. Add Outbound EC2 security group rule allowing HTTP Port 80 for the ALB's security group. Verify functionality by accessing the ALB DNS name. A default NGINX webpage should show up. 
   
 ![defaultnginx](https://github.com/ericincloud/Autoscaling-EC2-Web-Server/assets/144301872/75414bd4-4f52-43f7-a3cb-ab04aded7263)
 
