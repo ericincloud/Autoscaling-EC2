@@ -5,7 +5,8 @@
 ## Architectural Diagram
 ![AutoScaleArch](https://github.com/ericincloud/Autoscaling-EC2-Web-Server/assets/144301872/f214b5fd-1859-4190-a049-d3dc064728ac)
 
-### NOTE: *Terraform file (main.tf) in repositiory.*
+### NOTE: *Terraform file (main.tf) in repositiory.* 
+#### Launch using Terraform requires only configuring the ALB's security group. Simply replace outbound HTTP Port 80 from `anywhere` to HTTP Port 80 `EC2 Instances's Private IPv4 address`. 
 
 
 ## Step 1: Create VPC  
