@@ -1,8 +1,8 @@
- provider "aws" {
+provider "aws" {
   region = "us-east-1"  
 }
 
-resource "aws_vpc" "main" { 
+resource "aws_vpc" "main" {  
   cidr_block = "10.0.0.0/16"
 }
 
@@ -37,7 +37,6 @@ resource "aws_subnet" "private" {
   count      = 3
   vpc_id     = aws_vpc.main.id
   cidr_block = "10.0.${count.index + 3}.0/24"
-  map_public_ip_on_launch = false
 }
 
 resource "aws_security_group" "sg" {
@@ -49,6 +48,17 @@ resource "aws_security_group" "sg" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  egress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+resource "aws_security_group" "ec2_sg" {
+  vpc_id = aws_vpc.main.id
 }
 
 resource "aws_lb" "alb" {
@@ -81,7 +91,7 @@ resource "aws_launch_configuration" "lc" {
   name          = "my-lc"
   image_id      = "ami-04479e961467114dd"
   instance_type = "t2.micro"
-  security_groups = [aws_security_group.sg.id]
+  security_groups = [aws_security_group.ec2_sg.id]
 }
 
 resource "aws_autoscaling_group" "asg" {
@@ -91,7 +101,7 @@ resource "aws_autoscaling_group" "asg" {
   health_check_type    = "ELB"
   health_check_grace_period = 300
   launch_configuration = aws_launch_configuration.lc.name
-  vpc_zone_identifier  = [aws_subnet.private[0].id]
+  vpc_zone_identifier  = [aws_subnet.private[0].id, aws_subnet.public[0].id, aws_subnet.public[1].id]
   target_group_arns    = [aws_lb_target_group.tg.arn]
 }
 
