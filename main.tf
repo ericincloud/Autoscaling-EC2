@@ -102,7 +102,7 @@ resource "aws_autoscaling_group" "asg" {
   health_check_type    = "ELB"
   health_check_grace_period = 300
   launch_configuration = aws_launch_configuration.lc.name
-  vpc_zone_identifier  = [aws_subnet.private[0].id, aws_subnet.public[0].id, aws_subnet.public[1].id]
+  vpc_zone_identifier  = [aws_subnet.private[0].id]
   target_group_arns    = [aws_lb_target_group.tg.arn]
 }
 
