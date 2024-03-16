@@ -48,6 +48,17 @@ resource "aws_security_group" "sg" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+
+  egress {
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}
+
+resource "aws_security_group" "ec2_sg" {
+  vpc_id = aws_vpc.main.id
 }
 
 resource "aws_lb" "alb" {
@@ -80,7 +91,7 @@ resource "aws_launch_configuration" "lc" {
   name          = "my-lc"
   image_id      = "ami-04479e961467114dd"
   instance_type = "t2.micro"
-  security_groups = [aws_security_group.sg.id]
+  security_groups = [aws_security_group.ec2_sg.id]
 }
 
 resource "aws_autoscaling_group" "asg" {
@@ -90,7 +101,7 @@ resource "aws_autoscaling_group" "asg" {
   health_check_type    = "ELB"
   health_check_grace_period = 300
   launch_configuration = aws_launch_configuration.lc.name
-  vpc_zone_identifier  = [aws_subnet.private[0].id]
+  vpc_zone_identifier  = [aws_subnet.private[0].id, aws_subnet.public[0].id, aws_subnet.public[1].id]
   target_group_arns    = [aws_lb_target_group.tg.arn]
 }
 
