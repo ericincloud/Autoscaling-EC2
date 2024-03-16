@@ -69,14 +69,14 @@ resource "aws_security_group" "ec2_sg" {
     from_port                = 80
     to_port                  = 80
     protocol                 = "tcp"
-    source_security_group_id = aws_security_group.sg.id
+    security_groups = [aws_security_group.sg.id]
   } 
 
   egress {
     from_port                = 80
     to_port                  = 80
     protocol                 = "tcp"
-    source_security_group_id = aws_security_group.sg.id
+    security_groups = [aws_security_group.sg.id]
   }
 }
 
