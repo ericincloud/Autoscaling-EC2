@@ -4,6 +4,9 @@ provider "aws" {
 
 resource "aws_vpc" "main" {  
   cidr_block = "10.0.0.0/16"
+
+  tags = {
+    Name = "Autoscaling-EC2-Web-Server"
 }
 
 resource "aws_internet_gateway" "gw" {
@@ -60,6 +63,19 @@ resource "aws_security_group" "sg" {
 
 resource "aws_security_group" "ec2_sg" {
   vpc_id = aws_vpc.main.id
+
+  ingress {
+    from_port                = 80
+    to_port                  = 80
+    protocol                 = "tcp"
+    source_security_group_id = aws_security_group.sg.id
+  } 
+
+  egress {
+    from_port                = 80
+    to_port                  = 80
+    protocol                 = "tcp"
+    source_security_group_id = aws_security_group.sg.id
 }
 
 resource "aws_lb" "alb" {
