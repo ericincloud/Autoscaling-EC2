@@ -5,6 +5,8 @@
 ## Architectural Diagram
 ![AutoScaleArch](https://github.com/ericincloud/Autoscaling-EC2-Web-Server/assets/144301872/f214b5fd-1859-4190-a049-d3dc064728ac)
 
+### NOTE: *Terraform file (main.tf) included in repositiory*
+
 
 ## Step 1: Create VPC  
 #### Create VPC with 3 Public subnets and 3 Private subnets.
