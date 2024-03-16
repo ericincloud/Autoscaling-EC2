@@ -6,7 +6,7 @@ resource "aws_vpc" "main" {
   cidr_block = "10.0.0.0/16"
 
   tags = {
-    Name = "my_vpc_name"
+    Name = "Autoscaling-EC2-Web-Server"
   }
 }
 
@@ -122,6 +122,12 @@ resource "aws_autoscaling_group" "asg" {
   launch_configuration = aws_launch_configuration.lc.name
   vpc_zone_identifier  = [aws_subnet.private[0].id]
   target_group_arns    = [aws_lb_target_group.tg.arn]
+
+  tag {
+    key                 = "Name"
+    value               = "Autoscaling-EC2-Web-Server"
+    propagate_at_launch = true
+  }
 }
 
 resource "aws_cloudwatch_metric_alarm" "high_cpu" {
