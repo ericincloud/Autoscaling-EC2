@@ -1,4 +1,4 @@
-I want the ec2 instances to remain private without a public ip address and i want the ec2's secuirty group to have an inbound rule allowing port 80 associated with the load balancer's secuirty group and an outbound secuirty group rule that also allows port 80 assocaited with the load balancer's secuirty group. here is my terraform code for aws: provider "aws" {
+aws: provider "aws" {
   region = "us-east-1"  
 }
 
