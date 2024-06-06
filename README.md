@@ -1,5 +1,5 @@
 # Autoscaling-EC2-Web-Server
-#### Autoscaling with EC2 Web Server give users a smoother experience when visiting their favorite website! With the Application Load Balancer and Autoscaling Group, traffic from users is automatically balanced even when traffic is heavy or light. Resources dynamically add or reduce capacity depending on traffic conditions—making maintenance easier while providing consistent performance. 
+#### Autoscaling with EC2 Web Server provides users a smoother experience when accessing their preferred website. Utilizing the Application Load Balancer and Autoscaling Group, user traffic is automatically distributed evenly, regardless of whether it is heavy or light. Resources dynamically adjust capacity based on traffic conditions, simplifying maintenance and ensuring consistent performance.
 
 
 ## Architectural Diagram
